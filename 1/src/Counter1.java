@@ -6,9 +6,6 @@ public class Counter1 implements Runnable{
         this.counter = 0;
         this.n = n;
     }
-    public void reset(){
-        this.counter = 0;
-    }
 
     public void increment(){
         this.counter +=1;

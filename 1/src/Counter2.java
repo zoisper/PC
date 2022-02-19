@@ -5,6 +5,7 @@ public class Counter2 implements Runnable{
 
     public Counter2(int n){
         this.n = n;
+        counter = 0;
     }
 
     public int getCounter(){
