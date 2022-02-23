@@ -1,4 +1,4 @@
-public class Ex {
+public class Guiao1 {
     public static void main(String[] args)  {
         System.out.println("* Exercicio 1");
         ex1(10,10);
@@ -13,9 +13,8 @@ public class Ex {
     public static void ex1(int N, int I){
         System.out.println("N:" + N + " I:" + I);
         Thread[] threads = new Thread[N];
-        Printer printer = new Printer(I);
         for(int i=0; i<N; i++)
-            threads[i] = new Thread(printer);
+            threads[i] = new Thread(new Printer(I));
         for(int i=0; i<N; i++)
             threads[i].start();
         for(int i=0; i<N; i++)
@@ -30,9 +29,9 @@ public class Ex {
     public static void ex2_1(int N, int I){
         System.out.println("N:" + N + " I:" + I);
         Thread[] threads = new Thread[N];
-        Counter1 counter = new Counter1(I);
+        Counter counter = new Counter();
         for(int i=0; i<N; i++)
-            threads[i] = new Thread(counter);
+            threads[i] = new Thread(new Incrementer1(counter,I));
         for(int i=0; i<N; i++)
             threads[i].start();
         for(int i=0; i<N; i++)
@@ -41,15 +40,15 @@ public class Ex {
             } catch (InterruptedException e){
                 e.printStackTrace();
             }
-        System.out.println("Contador1: " + counter.getCounter() + '\n');
+        System.out.println("Contador1: " + counter.getValue() + '\n');
     }
 
     public static void ex2_2(int N, int I){
         System.out.println("N:" + N + " I:" + I);
         Thread[] threads = new Thread[N];
-        Counter2 counter = new Counter2(I);
+        Counter counter = new Counter();
         for(int i=0; i<N; i++)
-            threads[i] = new Thread(counter);
+            threads[i] = new Thread(new Incrementer2(counter,I));
         for(int i=0; i<N; i++)
             threads[i].start();
         for(int i=0; i<N; i++)
@@ -58,7 +57,7 @@ public class Ex {
             } catch (InterruptedException e){
                 e.printStackTrace();
             }
-        System.out.println("Contador2: " + counter.getCounter() + '\n');
+        System.out.println("Contador2: " + counter.getValue() + '\n');
     }
 
     public static  void ex3(int n, int start, int inc){
