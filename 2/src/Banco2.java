@@ -1,8 +1,8 @@
-class Conta{
+class Conta2{
 	
 	private int value;
 
-	public Conta(){
+	public Conta2(){
 		this.value = 0;
 	}
 
@@ -27,12 +27,12 @@ class Conta{
 
 public class Banco2 implements Bank{
 
-	private Conta[] contas;
+	private Conta2[] contas;
 
 	public Banco2(int N){
-		this.contas = new Conta[N];
+		this.contas = new Conta2[N];
 		for(int i=0; i<N; i++)
-			this.contas[i] = new Conta();
+			this.contas[i] = new Conta2();
 
 	}
 
