@@ -11,7 +11,19 @@ public class Incrementer implements Runnable {
 
         public void run () {
             for (int i = 0; i < n; i++)
-                counter.increment();
+                counter.increment();    
         }
+
+        
+        // metodo a utilizar pelo incrementer que acede diretamente à variavel value do contador
+        /*
+        public void run () {
+                for (int i = 0; i < n; i++)
+                    synchronized(counter){
+                        counter.value+=1;
+                    }
+        }*/
+    
     }
+
 

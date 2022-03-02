@@ -87,7 +87,6 @@ public class Banco1 implements Bank{
     	int contas_len = contas.length;
     	if(from >=contas_len || to>=contas.length)
     		throw new InvalidAccount();
-    	//System.out.println(from + " " + to + " ");
     	
     	this.withdraw(from,amount);
     	this.deposit(to, amount);
