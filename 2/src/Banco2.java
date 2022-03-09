@@ -19,7 +19,7 @@ class Conta2{
 			this.value -= val;
 	}
 
-	public int balance(){
+	public synchronized int balance(){
 		return this.value;
 
 	}
@@ -87,7 +87,6 @@ public class Banco2 implements Bank{
     	int contas_len = contas.length;
     	if(from >=contas_len || to>=contas.length)
     		throw new InvalidAccount();
-    	//System.out.println(from + " " + to + " ");
     	
     	this.withdraw(from,amount);
     	this.deposit(to, amount);

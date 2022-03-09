@@ -70,7 +70,7 @@ public class Banco1 implements Bank{
 
     }
 
-    public int totalBalance() throws InvalidAccount{
+    public synchronized int totalBalance() throws InvalidAccount{
     	
     	int total = 0;
 
@@ -83,7 +83,7 @@ public class Banco1 implements Bank{
 
 
 
-    public void transfer(int from, int to, int amount) throws InvalidAccount, NotEnoughFunds{
+    public synchronized void transfer(int from, int to, int amount) throws InvalidAccount, NotEnoughFunds{
     	int contas_len = contas.length;
     	if(from >=contas_len || to>=contas.length)
     		throw new InvalidAccount();

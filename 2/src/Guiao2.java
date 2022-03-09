@@ -3,10 +3,10 @@ public class Guiao2{
 
 		long start, finish, timeElapsed;
 
-		System.out.println("* Exercicio 1");
+		/*System.out.println("* Exercicio 1");
 		ex1(100,1000);
 		
-		System.out.println();
+		System.out.println();*/
 		
 		System.out.println("* Exercicio 2");
 		start = System.currentTimeMillis();
@@ -54,13 +54,15 @@ public class Guiao2{
 		Thread[] threads = new Thread[N];
 		
 		for(int i=0; i<num_contas;i++)
-			banco.deposit(i,10000);
+			banco.deposit(i,100000);
 
 		System.out.println("Balanço inicial: " + banco.totalBalance());
 
 		for(int i=0; i<N; i++){
 			threads[i] = new Thread(new Mover(banco,num_movimentos));
 		}
+
+		new Thread(new Observer(banco,num_movimentos,100000*num_contas)).start();
 
 		for(int i=0; i<N; i++){
 			threads[i].start();
@@ -83,13 +85,15 @@ public class Guiao2{
 		Thread[] threads = new Thread[N];
 		
 		for(int i=0; i<num_contas;i++)
-			banco.deposit(i,10000);
+			banco.deposit(i,100000);
 
 		System.out.println("Balanço inicial: " + banco.totalBalance());
 
 		for(int i=0; i<N; i++){
 			threads[i] = new Thread(new Mover(banco,num_movimentos));
 		}
+
+		new Thread(new Observer(banco,num_movimentos,100000*num_contas)).start();
 
 		for(int i=0; i<N; i++){
 			threads[i].start();
