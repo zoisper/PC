@@ -34,6 +34,12 @@ class Bank{
 
     HashMap<Integer, Account> accounts = new HashMap<>();
     Lock l = new ReentrantLock();
+
+    //Lock l = new ReentrantReadWriteLock();
+    //Lock rl = l.readLock();
+    //Lock wl = l.writeLock();
+
+
     int lastId = 0;
 
     
