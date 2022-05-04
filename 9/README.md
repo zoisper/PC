@@ -1,13 +1,13 @@
 abrir earlang
 
-> erl
+\> erl
 
 executar o chat
 
->> c(server).
+\> c(server).
 
->> server:start(12345).
+\> server:start(12345).
 
 excutar cliente
 
->> java Client localhost 12345 
+\> java Client localhost 12345 
