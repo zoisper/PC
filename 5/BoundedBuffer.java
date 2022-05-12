@@ -1,47 +1,44 @@
-import java.util.concurrent.Semaphore;
-import java.util.Random;
 
-class BoundedBuffer{
-    private int[] buf;
+class BoundedBuffer<T> {
+    private T[] buff;
     private int iget = 0;
     private int iput = 0;
     private int nelems = 0;
-      
 
     BoundedBuffer(int N) { 
-        this.buf = new int[N];
-        
+        this.buff = (T[]) new Object[N];
      }
-    
-     public synchronized int get() throws InterruptedException { 
+
+
+    public synchronized T get() throws InterruptedException { 
+        T res;
         while(nelems == 0)
             wait();
-        int res;
-        res = buf[iget];
-        iget = (iget+1) % buf.length;
+        res = buff[iget];
+        iget = (iget+1) %buff.length;
+        nelems -=1;
         notifyAll();
-        nelems -= 1;
+
         return res;
+
      }
 
-
-    public synchronized void put(int v) throws InterruptedException {
-        while(nelems == 0)
+    public synchronized void put(T x) throws InterruptedException {
+        while(nelems == buff.length)
             wait();
-        buf[iput] =  v;
-        iput = (iput+1) % buf.length;
+        buff[iput] = x;
+        iput = (iput+1) % buff.length;
+        nelems +=1;
         notifyAll();
-        nelems += 1;
-     }
 
+     }
 }
 
 
-
-class Teste{
+class Main{
     public static void main(String[] args){
         
-       BoundedBuffer b = new BoundedBuffer(20);
+       BoundedBuffer<Integer> b = new BoundedBuffer<>(20);
        
        new Thread(() -> {
            try{   
