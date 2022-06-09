@@ -14,7 +14,7 @@ adivinha(Partida, N) ->
 jogo(Jogadores) when length(Jogadores) =:= 4 -> 
     Random = rand:uniform(100),
     Partida = spawn(fun()->partida(Random) end),
-    [J! {Partida, self()} || J <- L]
+    [J! {Partida, self()} || J <- Jogadores],
     jogo([]);
 
 jogo(Jogadores) ->
@@ -22,7 +22,7 @@ jogo(Jogadores) ->
 
 partida(Numero) ->
     Self = self(),
-    spawn(fun()-> receive after 60000 -> Self ! timeout end ),
+    spawn(fun()-> receive after 60000 -> Self ! timeout end end ),
     partida(false, 0, false, Numero).
 
 partida(Ganhou, Tentativas, Timeout, Numero) ->
